@@ -1,0 +1,215 @@
+/* Landing: calm ink + soft emerald + muted champagne gold. Overrides the global
+   --mz-* tokens inside .mz-landing only, so bg-surface / text-muted etc. pick them up. */
+.mz-landing {
+  --mz-background: #f3f5f4;
+  --mz-surface: #ffffff;
+  --mz-border: #dde4e1;
+  --mz-fg: #0f1a17;
+  --mz-muted: #5a6964;
+  --mz-accent: #12805e;
+  --mz-gold: #9a7631;
+  --mz-glow: rgba(18, 128, 94, 0.1);
+  --mz-wash-a: rgba(18, 128, 94, 0.07);
+  --mz-wash-b: rgba(154, 118, 49, 0.06);
+  --mz-icon-o: 0.11;
+  --mz-on-accent: #ffffff;
+  --mz-risk: #b9543f;
+  --mz-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark .mz-landing {
+  --mz-background: #0a0f15;
+  --mz-surface: #10171f;
+  --mz-border: #1c2631;
+  --mz-fg: #e4e9ee;
+  --mz-muted: #8a96a6;
+  --mz-accent: #4cc39b;
+  --mz-gold: #d2b26b;
+  --mz-glow: rgba(76, 195, 155, 0.09);
+  --mz-wash-a: rgba(76, 195, 155, 0.06);
+  --mz-wash-b: rgba(210, 178, 107, 0.045);
+  --mz-icon-o: 0.09;
+  --mz-on-accent: #06120e;
+  --mz-risk: #e08a76;
+}
+
+html:has(.mz-landing) {
+  scroll-behavior: smooth;
+}
+
+.mz-landing {
+  font-variant-numeric: tabular-nums;
+}
+
+.mz-landing h1,
+.mz-landing h2,
+.mz-landing h3 {
+  text-wrap: balance;
+}
+
+/* ---------- Backdrop ---------- */
+.mz-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.mz-wash {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(40% 35% at 18% 20%, var(--mz-wash-a), transparent 70%),
+    radial-gradient(38% 32% at 85% 75%, var(--mz-wash-b), transparent 70%);
+  animation: mz-wash 28s ease-in-out infinite alternate;
+}
+
+.mz-spot {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 28%), var(--mz-glow), transparent 62%);
+}
+
+.mz-grid {
+  position: absolute;
+  inset: 0;
+  background-size: 56px 56px;
+  background-image:
+    linear-gradient(to right, var(--mz-border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--mz-border) 1px, transparent 1px);
+  opacity: 0.35;
+  mask-image: radial-gradient(ellipse 70% 55% at 50% 30%, black 20%, transparent 75%);
+}
+
+.mz-ic {
+  position: absolute;
+  opacity: var(--mz-icon-o);
+  transform: translate3d(calc(var(--px, 0) * var(--depth) * 1px), calc(var(--py, 0) * var(--depth) * 1px), 0);
+  transition: transform 0.9s var(--mz-ease);
+  will-change: transform;
+}
+
+.mz-ic > svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 1.1;
+  animation: mz-float var(--dur, 18s) ease-in-out var(--delay, 0s) infinite alternate;
+}
+
+.mz-ic.is-scale > svg {
+  transform-origin: 50% 18%;
+  animation-name: mz-sway;
+}
+
+.mz-curve path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: mz-draw 4.5s var(--mz-ease) 0.8s forwards;
+}
+
+/* ---------- Entrance ---------- */
+.mz-rise {
+  animation: mz-rise 1.1s var(--mz-ease) both;
+  animation-delay: var(--d, 0s);
+}
+
+.mz-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+
+.mz-word > span {
+  display: inline-block;
+  animation: mz-word 1.05s var(--mz-ease) both;
+  animation-delay: var(--d, 0s);
+}
+
+.mz-bob {
+  animation: mz-bob 9s ease-in-out infinite alternate;
+  animation-delay: var(--bob, 0s);
+}
+
+.mz-ring {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: mz-ring 1.8s var(--mz-ease) 1.2s forwards;
+}
+
+.mz-bar {
+  transform-origin: left center;
+  animation: mz-bar 1.4s var(--mz-ease) both;
+  animation-delay: var(--d, 1.2s);
+}
+
+/* ---------- Problem → solution connector ---------- */
+.mz-flow {
+  stroke-dasharray: 4 6;
+  animation: mz-flow 1.6s linear infinite;
+}
+
+.mz-row:hover .mz-flow-wrap {
+  color: var(--mz-accent);
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes mz-wash {
+  from { transform: translate3d(-2%, -1%, 0) scale(1); }
+  to { transform: translate3d(2%, 2%, 0) scale(1.06); }
+}
+
+@keyframes mz-float {
+  from { transform: translateY(-9px) rotate(-4deg); }
+  to { transform: translateY(11px) rotate(4deg); }
+}
+
+@keyframes mz-sway {
+  0% { transform: rotate(-7deg); }
+  100% { transform: rotate(7deg); }
+}
+
+@keyframes mz-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes mz-rise {
+  from { opacity: 0; transform: translateY(26px); filter: blur(10px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+
+@keyframes mz-word {
+  from { transform: translateY(108%); }
+  to { transform: none; }
+}
+
+@keyframes mz-bob {
+  from { transform: translateY(-5px); }
+  to { transform: translateY(6px); }
+}
+
+@keyframes mz-ring {
+  to { stroke-dashoffset: var(--ring-to, 36); }
+}
+
+@keyframes mz-bar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes mz-flow {
+  to { stroke-dashoffset: -20; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mz-landing *,
+  .mz-landing *::before,
+  .mz-landing *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .mz-ring { stroke-dashoffset: var(--ring-to, 36); }
+  .mz-curve path { stroke-dashoffset: 0; }
+}

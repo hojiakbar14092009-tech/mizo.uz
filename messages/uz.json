@@ -191,6 +191,93 @@
     "sent": "SMS yuborildi",
     "demo": "Demo rejim: xabar telefonga emas, Mizo jurnaliga yozildi"
   },
+  "landing": {
+    "nav": {
+      "problems": "Muammo va yechim",
+      "qa": "Savol-javob",
+      "features": "Imkoniyatlar",
+      "demo": "Demo",
+      "login": "Kirish",
+      "start": "Boshlash"
+    },
+    "hero": {
+      "eyebrow": "Oʻzbekiston uchun moliyaviy savodxonlik platformasi",
+      "titleA": "Aqlli moliya —",
+      "titleB": "erkin kelajak",
+      "lead": "Bir nechta qarz, yetmayotgan oylik va firibgarlar xavfi — koʻpchilikning kundalik muammosi. Mizo raqamlaringizni tahlil qilib, qarzdan chiqish, tejash va himoyalanish rejasini bir joyda tuzib beradi.",
+      "ctaPrimary": "Bepul boshlash",
+      "ctaSecondary": "Demo akkaunt bilan koʻrish",
+      "trust": ["Faqat 18 yoshdan katta fuqarolar", "Claude AI maslahatchi", "Oʻzbek va rus tillarida"],
+      "sample": "Namuna",
+      "healthTitle": "Moliyaviy salomatlik",
+      "healthBand": "Yaxshilanmoqda",
+      "healthNote": "6 oyda 41 → 64 ball",
+      "planTitle": "Qarz rejasi · Avalanche",
+      "planNote": "Minimal toʻlovga nisbatan 7 oy oldin yopiladi",
+      "debts": ["Mikroqarz", "Karta krediti", "Avtokredit"],
+      "first": "1-navbat",
+      "fraudTitle": "Firibgarlik radari",
+      "fraudNote": "“Kuniga 5% kafolatli daromad” — yuqori xavf"
+    },
+    "problems": {
+      "eyebrow": "Muammo va yechim",
+      "title": "Har bir muammoga aniq vosita",
+      "lead": "Mizo umumiy maslahat bermaydi — sizning summalaringiz, foizlaringiz va muddatlaringiz bilan hisoblaydi.",
+      "problemLabel": "Muammo",
+      "solutionLabel": "Yechim",
+      "items": [
+        { "problem": "Qarzlar koʻpayib ketgan, qaysi birini avval yopishni bilmayman", "solution": "Avalanche va Snowball usullari solishtiriladi: qaysi qarz birinchi yopiladi, qachon tugaydi va qancha foiz tejaladi.", "tool": "Qarz rejasi" },
+        { "problem": "Oylik yetmaydi, pul tejab boʻlmayapti", "solution": "AI xarajatlaringizni 50/30/20 qoidasi boʻyicha tahlil qilib, shu haftadanoq qisqartirish mumkin boʻlgan joylarni koʻrsatadi.", "tool": "AI tejash rejasi" },
+        { "problem": "Telegramdagi “kafolatli daromad” taklifiga aldanib qolish xavfi", "solution": "Taklif matnini tekshiring: radar 0–100 ballik xavf darajasi va qizil bayroqlarni koʻrsatadi.", "tool": "Firibgarlik radari" },
+        { "problem": "Qaysi bank krediti arzonroq ekanini bilmayman", "solution": "Summa va muddatni kiriting — takliflar foiz, tezlik va garov sharti boʻyicha saralanadi, oylik toʻlov hisoblanadi.", "tool": "Eng yaxshi kreditlar" }
+      ]
+    },
+    "qa": {
+      "eyebrow": "Savol-javob",
+      "title": "Mizo sizga qanday yordam beradi?",
+      "items": [
+        { "q": "Kreditim qimmat. Oylik toʻlovni kamaytirsa boʻladimi?", "a": "Ha. Refinansirovka kalkulyatori joriy foizingizni bozor stavkasi bilan solishtiradi. Masalan, 42% lik mikroqarzni 24% lik kredit bilan yopish oylik toʻlovni 1,1 mln dan 870 ming soʻmgacha tushiradi." },
+        { "q": "Toʻlov kunini unutib qoʻyaman. Nima qilay?", "a": "Eslatma qoʻshing: Mizo toʻlov kunidan oldin SMS yuboradi va muddati yaqin yoki oʻtgan toʻlovlarni rang bilan belgilaydi. Demo rejimda SMS jurnalga yoziladi." },
+        { "q": "Moliyaviy holatim yaxshimi yoki yomonmi — qanday bilaman?", "a": "Moliyaviy salomatlik bahosi daromad, xarajat, qarz yuki va jamgʻarmani hisobga olib 1–100 ball beradi hamda ballni oshirish uchun aniq qadamlarni koʻrsatadi." },
+        { "q": "Oyiga 1 mln soʻm jamgʻarsam, 10 yilda qancha boʻladi?", "a": "Boylik simulyatori foiz, inflyatsiya va har yili toʻlovni oshirishni hisobga oladi: yillar boʻyicha jadval hamda 10, 50 va 100 mln soʻmlik marralarga qachon yetishingizni koʻrsatadi." },
+        { "q": "Boshqalar qarzdan qanday qutulgan?", "a": "Hamjamiyat boʻlimida foydalanuvchilar real tajribasini ulashadi: qancha tejagani va qaysi usul ishlagani. Eng foydali maslahatlar yuqorida turadi, moderatsiyani admin olib boradi." }
+      ]
+    },
+    "features": {
+      "eyebrow": "Imkoniyatlar",
+      "title": "Toʻqqizta modul — bitta hisob",
+      "open": "Ochish",
+      "items": [
+        { "title": "AI maslahatchi", "desc": "Savolingizga raqamlaringiz asosida javob" },
+        { "title": "Kredit va qarz rejasi", "desc": "Refinansirovka foydasi va Avalanche rejasi" },
+        { "title": "Tejash maqsadlari", "desc": "Maqsad, progress va AI tejash rejasi" },
+        { "title": "Eslatmalar", "desc": "Toʻlov kunidan oldin SMS" },
+        { "title": "Firibgarlik radari", "desc": "0–100 ballik xavf tahlili" },
+        { "title": "Boylik simulyatori", "desc": "Yillar boʻyicha jamgʻarma prognozi" },
+        { "title": "Eng yaxshi kreditlar", "desc": "12 ta bank taklifi solishtiriladi" },
+        { "title": "Moliyaviy salomatlik", "desc": "Har oy 1–100 ball va tavsiyalar" },
+        { "title": "Hamjamiyat", "desc": "Real tajriba va foydali maslahatlar" }
+      ]
+    },
+    "demo": {
+      "eyebrow": "Hakamlar va mehmonlar uchun",
+      "title": "Roʻyxatdan oʻtmasdan sinab koʻring",
+      "lead": "Bu akkauntlar namuna maʼlumotlar bilan toʻldirilgan: maqsadlar, eslatmalar, salomatlik tarixi va hamjamiyat maslahatlari.",
+      "userTitle": "Foydalanuvchi",
+      "userNote": "Barcha 9 ta modul",
+      "adminTitle": "Administrator",
+      "adminNote": "Statistika, foydalanuvchilar va moderatsiya",
+      "email": "Email",
+      "password": "Parol",
+      "copy": "Nusxa olish",
+      "copied": "Nusxalandi",
+      "go": "Kirish sahifasiga"
+    },
+    "footer": {
+      "rights": "Barcha huquqlar himoyalangan.",
+      "disclaimer": "Bank takliflari namuna maʼlumot — aniq shartlarni bankdan tekshiring."
+    }
+  },
   "errors": {
     "AGE_RESTRICTION": "Mizo platformasidan faqat 18 yoshdan katta fuqarolar foydalana oladi.",
     "PNFL_INVALID": "JShShIR notoʻgʻri formatda.",
