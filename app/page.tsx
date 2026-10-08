@@ -2,6 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { HeroBackgroundTracker } from '@/components/HeroBackgroundTracker'
+import { AnimatedCard } from '@/components/AnimatedCard'
+import { InteractiveQA } from '@/components/InteractiveQA'
+import { MizoLogo } from '@/components/MizoLogo'
+import { LanguageToggle } from '@/components/LanguageToggle'
 
 const features = [
   {
@@ -46,6 +51,64 @@ const features = [
   },
 ]
 
+const qaItems = [
+  {
+    icon: '❓',
+    question: {
+      uz: 'Qarz boʻyicha qalangan?',
+      ru: 'Застрял с долгами?',
+    },
+    answer: {
+      uz: 'Avalanche va Snowball algoritmlari orqali 18 oy oldin qutulishingiz mumkin.',
+      ru: 'Используя методы Avalanche и Snowball, выплатите долги на 18 месяцев быстрее.',
+    },
+  },
+  {
+    icon: '💰',
+    question: {
+      uz: 'Oylik daromaddan pul tejay olmayapsizmi?',
+      ru: 'Не можете копить деньги?',
+    },
+    answer: {
+      uz: 'AI 50/30/20 byudjet rejasi va haftalik Quick Wins bilan tejash boshlang.',
+      ru: 'Начните копить с AI плана бюджета 50/30/20 и еженедельными советами.',
+    },
+  },
+  {
+    icon: '🚨',
+    question: {
+      uz: 'Firibgarlar yoki shubhali SMS xabarlarga duch keldingizmi?',
+      ru: 'Сталкиваетесь с мошенничеством?',
+    },
+    answer: {
+      uz: '0–100 ballik Red Flags xavf oʻlchagichi shubhali takliflari aniqlaydi.',
+      ru: 'Детектор Red Flags (0–100 баллов) выявляет подозрительные предложения.',
+    },
+  },
+  {
+    icon: '🤖',
+    question: {
+      uz: 'Murakkab moliyaviy vaziyatda maslahat kerakmi?',
+      ru: 'Нужен совет по финансам?',
+    },
+    answer: {
+      uz: 'Claude AI shaxsiy 24/7 yordamchisi sizga moliyaviy masla beradi.',
+      ru: 'Личный AI-помощник Claude дает совет 24/7 по вашей ситуации.',
+    },
+  },
+  {
+    icon: '🏦',
+    question: {
+      uz: 'Qaysi bank krediti eng arzon va ishonchli?',
+      ru: 'Какой кредит выбрать?',
+    },
+    answer: {
+      uz: 'Oʻzbekiston banklarining eng yaxshi kredit takliflari reytingi ko\'rsatiladi.',
+      ru: 'Рейтинг лучших кредитов от банков Узбекистана с фильтрацией.',
+    },
+  },
+]
+
 export default function Home() {
   const [lang, setLang] = useState<'uz' | 'ru'>('uz')
   const [mounted, setMounted] = useState(false)
@@ -70,16 +133,7 @@ export default function Home() {
       subheadline: 'Qarz, tejash, investitsiya va bogʻa — hamma bitta joyda, AI maslahat bilan',
       cta: 'Boshlash',
       login: 'Kirish',
-      problems: 'Insonlar qanday muammolari bor?',
-      solutions: 'Mizo qanday yechim beradi?',
-      problem1: 'Qarzlardan qutula olmaydi',
-      problem2: 'Tejasha olmaydi',
-      problem3: 'Firibgarlarga zaif',
-      problem4: 'Moliyaviy savoli boʻlganda javob yoʻq',
-      solution1: 'Avalanche/Snowball rejasi',
-      solution2: 'AI byudjet rejasi',
-      solution3: 'Red flags detektori',
-      solution4: 'Real Claude AI maslahat',
+      qaTitle: 'Saytda qanday muammolarni hal qila olasiz?',
       features: 'Asosiy Funksiyalar',
       judges: 'Hakamlar uchun test akkaundi',
       demoEmail: 'demo@mizo.uz',
@@ -94,16 +148,7 @@ export default function Home() {
       subheadline: 'Кредиты, сбережения, инвестиции и цели — всё в одном месте с помощью AI',
       cta: 'Начать',
       login: 'Вход',
-      problems: 'Какие проблемы решает Mizo?',
-      solutions: 'Что вам помогает?',
-      problem1: 'Не могу избавиться от долгов',
-      problem2: 'Не получается копить деньги',
-      problem3: 'Уязвим перед мошенниками',
-      problem4: 'Нет советчика по финансам',
-      solution1: 'План Avalanche/Snowball',
-      solution2: 'AI план бюджета',
-      solution3: 'Детектор риска',
-      solution4: 'Советник на базе Claude AI',
+      qaTitle: 'Какие проблемы решает Mizo?',
       features: 'Основные функции',
       judges: 'Тестовый аккаунт для жюри',
       demoEmail: 'demo@mizo.uz',
@@ -118,26 +163,24 @@ export default function Home() {
 
   if (!mounted) return null
 
+  const qaItemsForLang = qaItems.map((item) => ({
+    icon: item.icon,
+    question: item.question[lang],
+    answer: item.answer[lang],
+  }))
+
   return (
     <div className="min-h-screen bg-surface text-fg dark:bg-black dark:text-white">
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border/30 bg-surface/80 backdrop-blur-sm dark:bg-black/80">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-2">
-            <div className="text-2xl font-bold text-accent">M</div>
+          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <MizoLogo size="md" />
             <span className="text-sm font-medium">Mizo</span>
-          </div>
+          </Link>
           <div className="flex items-center gap-4">
-            <button
-              onClick={() => setLang(lang === 'uz' ? 'ru' : 'uz')}
-              className="text-xs font-medium uppercase tracking-wide text-fg/60 hover:text-fg transition"
-            >
-              {lang === 'uz' ? 'Ру' : 'Уз'}
-            </button>
-            <Link
-              href="/login"
-              className="px-3 py-1.5 rounded text-sm font-medium text-accent hover:bg-accent/10 transition"
-            >
+            <LanguageToggle currentLang={lang} onChange={setLang} />
+            <Link href="/login" className="px-3 py-1.5 rounded text-sm font-medium text-accent hover:bg-accent/10 transition">
               {copy.login}
             </Link>
           </div>
@@ -145,62 +188,31 @@ export default function Home() {
       </header>
 
       {/* Hero */}
-      <section className="px-6 py-16 sm:py-24">
-        <div className="mx-auto max-w-3xl space-y-6 text-center">
+      <section className="relative min-h-screen flex items-center justify-center px-6 py-16 sm:py-24 overflow-hidden">
+        <HeroBackgroundTracker />
+
+        <div className="relative z-10 mx-auto max-w-3xl space-y-6 text-center">
           <div className="space-y-2">
-            <p className="text-sm font-medium text-accent/70 uppercase tracking-wider">
-              {copy.tagline}
-            </p>
-            <h1 className="text-4xl sm:text-5xl font-bold leading-tight">
-              {copy.headline}
-            </h1>
+            <p className="text-sm font-medium text-accent/70 uppercase tracking-wider">{copy.tagline}</p>
+            <h1 className="text-4xl sm:text-5xl font-bold leading-tight">{copy.headline}</h1>
           </div>
-          <p className="text-lg text-fg/70 max-w-2xl mx-auto leading-relaxed">
-            {copy.subheadline}
-          </p>
+          <p className="text-lg text-fg/70 max-w-2xl mx-auto leading-relaxed">{copy.subheadline}</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4">
-            <Link
-              href="/register"
-              className="px-6 py-3 rounded-lg bg-accent text-white font-medium hover:bg-accent/90 transition inline-block text-center"
-            >
+            <Link href="/register" className="px-6 py-3 rounded-lg bg-accent text-white font-medium hover:bg-accent/90 transition inline-block text-center">
               {copy.cta}
             </Link>
-            <Link
-              href="/login"
-              className="px-6 py-3 rounded-lg border border-border/50 font-medium hover:bg-surface-alt transition inline-block text-center"
-            >
+            <Link href="/login" className="px-6 py-3 rounded-lg border border-border/50 font-medium hover:bg-surface-alt transition inline-block text-center">
               {copy.login}
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Problems & Solutions */}
+      {/* Interactive Q&A */}
       <section className="px-6 py-16 bg-surface-alt dark:bg-surface">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="text-3xl font-bold text-center mb-12">{copy.problems}</h2>
-          <div className="grid sm:grid-cols-2 gap-6 mb-16">
-            <div className="space-y-3 p-4 rounded-lg border border-border/20">
-              <div className="text-2xl">📊</div>
-              <h3 className="font-semibold">{copy.problem1}</h3>
-              <p className="text-sm text-fg/60">{copy.solution1}</p>
-            </div>
-            <div className="space-y-3 p-4 rounded-lg border border-border/20">
-              <div className="text-2xl">💸</div>
-              <h3 className="font-semibold">{copy.problem2}</h3>
-              <p className="text-sm text-fg/60">{copy.solution2}</p>
-            </div>
-            <div className="space-y-3 p-4 rounded-lg border border-border/20">
-              <div className="text-2xl">🚨</div>
-              <h3 className="font-semibold">{copy.problem3}</h3>
-              <p className="text-sm text-fg/60">{copy.solution3}</p>
-            </div>
-            <div className="space-y-3 p-4 rounded-lg border border-border/20">
-              <div className="text-2xl">❓</div>
-              <h3 className="font-semibold">{copy.problem4}</h3>
-              <p className="text-sm text-fg/60">{copy.solution4}</p>
-            </div>
-          </div>
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-3xl font-bold text-center mb-12">{copy.qaTitle}</h2>
+          <InteractiveQA items={qaItemsForLang} />
         </div>
       </section>
 
@@ -210,14 +222,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-12">{copy.features}</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {features.map((f, i) => (
-              <div
-                key={i}
-                className="p-5 rounded-lg border border-border/30 hover:border-accent/50 hover:bg-accent/5 transition space-y-2"
-              >
-                <div className="text-3xl">{f.icon}</div>
-                <h3 className="font-semibold text-sm">{f[lang].title}</h3>
-                <p className="text-xs text-fg/60">{f[lang].desc}</p>
-              </div>
+              <AnimatedCard key={i} icon={f.icon} title={f[lang].title} solution={f[lang].desc} delay={i * 0.1} />
             ))}
           </div>
         </div>
@@ -241,11 +246,6 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <p className="text-xs text-fg/50">
-            {lang === 'uz'
-              ? 'Barcha features, admin panel, SMS logs, community tips, health scores — barchasi ishlab turadi.'
-              : 'Все функции, админ-панель, логи SMS, советы сообщества, оценки здоровья — всё работает.'}
-          </p>
         </div>
       </section>
 
@@ -286,9 +286,6 @@ export default function Home() {
           background-color: var(--surface);
         }
         .bg-surface-alt {
-          background-color: var(--surface-alt);
-        }
-        .bg-surface-hover {
           background-color: var(--surface-alt);
         }
         .text-fg {
