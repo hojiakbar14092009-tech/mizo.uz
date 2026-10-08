@@ -1,12 +1,13 @@
 import assert from 'node:assert/strict'
 import { before, after, test } from 'node:test'
-import { mkdtempSync, readdirSync, unlinkSync, rmdirSync } from 'node:fs'
-import { join, resolve } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { NextRequest } from 'next/server'
 import { reminderDaysLeft } from '../lib/reminder-dates'
 
-let dir: string
+// Runs in a throwaway schema of the Postgres database, dropped afterwards.
+const baseUrl = process.env.TEST_DATABASE_URL ?? process.env.DATABASE_URL_UNPOOLED ?? process.env.DATABASE_URL ?? ''
+const hasPostgres = /^postgres(ql)?:\/\//.test(baseUrl)
+const schema = `test_sms_${process.pid}_${Date.now()}`
 let prisma: typeof import('../lib/prisma').prisma
 let send: typeof import('../app/api/sms/reminder/[id]/route')
 let logs: typeof import('../app/api/sms/logs/route')
@@ -26,8 +27,11 @@ function request(path: string, method = 'GET', user = 'owner', body?: unknown) {
 }
 
 before(async () => {
-  dir = mkdtempSync(resolve('tests/sms-db-'))
-  process.env.DATABASE_URL = `file:${join(dir, 'test.db').replaceAll('\\', '/')}`
+  if (!hasPostgres) return
+  const url = new URL(baseUrl)
+  url.searchParams.set('schema', schema)
+  process.env.DATABASE_URL = url.toString()
+  process.env.DATABASE_URL_UNPOOLED = url.toString()
   process.env.SMS_PROVIDER = 'mock'
   const setup = spawnSync(process.execPath, ['node_modules/prisma/build/index.js', 'db', 'push', '--skip-generate'], {
     env: { ...process.env, RUST_LOG: 'info' }, encoding: 'utf8',
@@ -59,13 +63,12 @@ before(async () => {
 })
 
 after(async () => {
-  if (prisma) await prisma.$disconnect()
+  if (prisma) {
+    await prisma.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${schema}" CASCADE`)
+    await prisma.$disconnect()
+  }
   if (originalProvider === undefined) delete process.env.SMS_PROVIDER
   else process.env.SMS_PROVIDER = originalProvider
-  if (dir) {
-    for (const file of readdirSync(dir)) unlinkSync(join(dir, file))
-    rmdirSync(dir)
-  }
 })
 
 test('due dates use Tashkent calendar, clamp month end and preserve overdue dates', () => {
@@ -77,7 +80,7 @@ test('due dates use Tashkent calendar, clamp month end and preserve overdue date
   assert.throws(() => reminderDaysLeft(0), RangeError)
 })
 
-test('SMS and moderation enforce identity, ownership, validation and limits', async t => {
+test('SMS and moderation enforce identity, ownership, validation and limits', { skip: !hasPostgres && 'needs a Postgres DATABASE_URL' }, async t => {
   await t.test('anonymous and blocked users cannot access SMS, due reminders or moderation', async () => {
     for (const user of ['anonymous', 'blocked']) {
       for (const handler of [logs.GET, due.GET, tips.GET, stats.GET]) {
