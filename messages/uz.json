@@ -8,7 +8,11 @@
     "kredit": "Kredit",
     "tejash": "Tejash",
     "eslatma": "Eslatma",
-    "firib": "Firibgarlik"
+    "firib": "Firibgarlik",
+    "health": "Moliyaviy salomatlik",
+    "wealth": "Boylik simulyatori",
+    "loans": "Eng yaxshi kreditlar",
+    "community": "Hamjamiyat"
   },
   "auth": {
     "login": "Kirish",
@@ -21,6 +25,172 @@
     "birthDate": "Tugʻilgan sana",
     "welcomeBack": "Qaytib keldingiz!"
   },
+  "common": {
+    "som": "soʻm",
+    "perMonth": "oyiga",
+    "months": "oy",
+    "years": "yil",
+    "calculate": "Hisoblash",
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "loading": "Yuklanmoqda…",
+    "retry": "Qayta urinish",
+    "empty": "Hozircha maʼlumot yoʻq",
+    "demoData": "Namuna maʼlumot — aniq shartlarni bankdan tekshiring."
+  },
+  "categories": {
+    "CREDIT": "Kredit",
+    "BUDGET": "Byudjet",
+    "FRAUD": "Firibgarlik",
+    "INVEST": "Investitsiya",
+    "GOAL": "Maqsad"
+  },
+  "ai": {
+    "title": "AI moliyaviy maslahatchi",
+    "subtitle": "Savolingizni yozing — AI oʻylab, sizning raqamlaringiz asosida javob beradi",
+    "placeholder": "Moliyaviy savolingizni yozing (Enter — yuborish)",
+    "thinking": "AI oʻylamoqda…",
+    "thinkingSteps": ["Savolingiz tahlil qilinmoqda", "Raqamlar hisoblanmoqda", "Eng yaxshi yechim tanlanmoqda", "Javob tayyorlanmoqda"],
+    "fallbackNotice": "AI xizmati hozir mavjud emas — tezkor maslahat koʻrsatildi.",
+    "rateLimited": "Juda koʻp soʻrov. Bir daqiqadan soʻng urinib koʻring.",
+    "savingsTitle": "AI tejash rejasi",
+    "savingsSubtitle": "Daromad va xarajatlaringizni kiriting — AI qayerdan tejash mumkinligini topadi",
+    "income": "Oylik daromad",
+    "debtPayments": "Oylik qarz toʻlovlari",
+    "expenseCategory": "Toifa",
+    "expenseAmount": "Summa",
+    "addExpense": "Xarajat qoʻshish",
+    "goalOptional": "Maqsad (ixtiyoriy)",
+    "buildPlan": "Reja tuzish",
+    "estimatedSaving": "Taxminiy tejash",
+    "budgetSplit": "Tavsiya etilgan taqsimot",
+    "needs": "Zarur",
+    "wants": "Xohish",
+    "savings": "Jamgʻarma",
+    "actions": "Qadamlar",
+    "quickWins": "Shu haftaning oʻzida",
+    "warnings": "Diqqat"
+  },
+  "refi": {
+    "title": "Refinansirovka",
+    "whatTitle": "Refinansirovka nima?",
+    "what": "Qimmat kreditni boshqa bankdagi arzonroq kredit bilan yopish. Qarz summasi oʻsha qoladi, lekin foiz pasayadi — oylik toʻlov va jami ortiqcha toʻlov kamayadi.",
+    "howTitle": "Qanday ishlatiladi",
+    "how": ["Joriy kredit summasi, foizi va qolgan muddatini kiriting.", "Mizo bozor stavkasi bilan solishtirib, qancha tejashingizni koʻrsatadi.", "Foydali boʻlsa — “Eng yaxshi kreditlar” boʻlimidan refinansirovka taklifini tanlab, bankka ariza bering.", "Yangi kredit eski qarzni yopadi, siz endi faqat arzon kreditni toʻlaysiz."],
+    "prosTitle": "Afzalliklari",
+    "pros": ["Oylik toʻlov kamayadi", "Bir nechta qarzni bitta toʻlovga birlashtirish mumkin", "Jami ortiqcha toʻlov qisqaradi"],
+    "watchTitle": "Eʼtibor bering",
+    "watch": "Muddatdan oldin yopish jarimasi, sugʻurta va komissiyalarni hisobga oling. Tejash ular yigʻindisidan katta boʻlsagina foydali."
+  },
+  "debts": {
+    "title": "Qarzni tez va oson yopish rejasi",
+    "budget": "Qarzlar uchun oylik byudjet",
+    "balance": "Qoldiq",
+    "rate": "Foiz",
+    "minPayment": "Minimal toʻlov",
+    "addDebt": "Qarz qoʻshish",
+    "buildPlan": "Rejani hisoblash",
+    "avalancheTitle": "Avalanche — eng arzon yoʻl",
+    "avalanche": "Hamma qarzlarga minimal toʻlov qiling, ortgan pulning hammasini eng yuqori foizli qarzga yoʻnaltiring. U yopilgach, uning toʻlovi keyingi eng qimmat qarzga oʻtadi. Jami foiz eng kam boʻladi.",
+    "snowballTitle": "Snowball — eng tez motivatsiya",
+    "snowball": "Ortgan pulni eng kichik qoldiqli qarzga yoʻnaltiring. Birinchi qarz tez yopiladi va bu davom etishga kuch beradi. Foiz biroz koʻproq boʻlishi mumkin.",
+    "minimumTitle": "Faqat minimal toʻlov",
+    "recommended": "Siz uchun tavsiya",
+    "payoffIn": "Toʻliq yopiladi: {months} oyda",
+    "totalInterest": "Jami foiz",
+    "firstWin": "Birinchi qarz yopiladi: {months}-oyda",
+    "savedVsMinimum": "Faqat minimal toʻlovga nisbatan {amount} soʻm va {months} oy tejaysiz",
+    "extraTip": "Oyiga yana {extra} soʻm qoʻshsangiz — {months} oy oldin va {amount} soʻm kam foiz bilan yopasiz",
+    "budgetTooLow": "Byudjet minimal toʻlovlar yigʻindisidan ({required} soʻm) kam",
+    "notFinished": "Bu toʻlov bilan qarz 50 yilda ham yopilmaydi — toʻlovni oshiring"
+  },
+  "health": {
+    "title": "Moliyaviy salomatlik bahosi",
+    "subtitle": "Har oy 1–100 ball: daromad, xarajat, qarz va jamgʻarma muvozanati",
+    "income": "Oylik daromad",
+    "expenses": "Oylik xarajat",
+    "debtPayments": "Oylik qarz toʻlovlari",
+    "savingsBalance": "Jamgʻarmangiz",
+    "check": "Bahoni hisoblash",
+    "trend": "Oylar boʻyicha dinamika",
+    "bands": {
+      "EXCELLENT": "Aʼlo",
+      "GOOD": "Yaxshi",
+      "FAIR": "Oʻrtacha",
+      "WEAK": "Zaif",
+      "CRITICAL": "Xavfli"
+    },
+    "components": {
+      "savingsRate": "Tejash ulushi",
+      "debtToIncome": "Qarz yuki",
+      "emergencyFund": "Favqulodda jamgʻarma",
+      "expenseRatio": "Xarajat ulushi",
+      "goalProgress": "Maqsadlar progressi"
+    },
+    "recommendations": "Ballni oshirish uchun"
+  },
+  "wealth": {
+    "title": "Boylik simulyatori",
+    "subtitle": "Muntazam jamgʻarma 5–10 yilda nimaga aylanishini koʻring",
+    "initial": "Boshlangʻich summa",
+    "monthly": "Oylik qoʻyiladigan summa",
+    "rate": "Yillik daromad foizi",
+    "years": "Muddat (yil)",
+    "growth": "Har yili toʻlovni oshirish",
+    "inflation": "Inflyatsiya",
+    "finalBalance": "Yakuniy summa",
+    "contributed": "Oʻzingiz qoʻygan",
+    "interest": "Foizdan daromad",
+    "realValue": "Bugungi pulda",
+    "milestone": "{amount} soʻmga {year}-yil {month}-oyda yetasiz"
+  },
+  "loans": {
+    "title": "Eng yaxshi kreditlar",
+    "subtitle": "Summa va muddatni kiriting — takliflar foiz, tezlik va shartlar boʻyicha saralanadi",
+    "amount": "Kredit summasi",
+    "term": "Muddat (oy)",
+    "type": "Kredit turi",
+    "noCollateral": "Faqat garovsiz",
+    "currentRate": "Joriy kredit foizingiz (ixtiyoriy)",
+    "monthlyPayment": "Oylik toʻlov",
+    "overpayment": "Ortiqcha toʻlov",
+    "approval": "{days} kunda koʻrib chiqiladi",
+    "saving": "Joriy kreditga nisbatan {amount} soʻm tejash",
+    "none": "Bu shartlarga mos taklif topilmadi — summa yoki muddatni oʻzgartiring",
+    "types": {
+      "CONSUMER": "Isteʼmol",
+      "MORTGAGE": "Ipoteka",
+      "AUTO": "Avtokredit",
+      "MICRO": "Mikroqarz",
+      "EDUCATION": "Taʼlim",
+      "REFINANCE": "Refinansirovka"
+    },
+    "badges": {
+      "BEST_VALUE": "Eng foydali",
+      "LOWEST_RATE": "Eng past foiz",
+      "FASTEST": "Eng tez",
+      "NO_COLLATERAL": "Garovsiz",
+      "ONLINE": "Onlayn ariza"
+    }
+  },
+  "community": {
+    "title": "Hamjamiyat tajribasi",
+    "subtitle": "Boshqa foydalanuvchilar qanday tejagani va qarzdan qutulgani",
+    "top": "Eng foydali",
+    "new": "Yangi",
+    "all": "Hammasi",
+    "share": "Tajriba ulashish",
+    "tipTitle": "Sarlavha",
+    "tipContent": "Nima qildingiz va natija qanday boʻldi?",
+    "savedAmount": "Qancha tejadingiz (ixtiyoriy)",
+    "saved": "{amount} soʻm tejagan",
+    "helpful": "Foydali",
+    "loadMore": "Yana koʻrsatish"
+  },
+  "sms": {
+    "sent": "SMS yuborildi",
+    "demo": "Demo rejim: xabar telefonga emas, Mizo jurnaliga yozildi"
+  },
   "errors": {
     "AGE_RESTRICTION": "Mizo platformasidan faqat 18 yoshdan katta fuqarolar foydalana oladi.",
     "PNFL_INVALID": "JShShIR notoʻgʻri formatda.",
@@ -29,6 +199,10 @@
     "INVALID_CREDENTIALS": "Email/JShShIR yoki parol notoʻgʻri.",
     "ACCOUNT_BLOCKED": "Hisobingiz bloklangan. Admin bilan bogʻlaning.",
     "UNAUTHORIZED": "Kirish talab etiladi.",
-    "FORBIDDEN": "Ruxsat yoʻq."
+    "FORBIDDEN": "Ruxsat yoʻq.",
+    "VALIDATION": "Maʼlumotlar notoʻgʻri kiritilgan.",
+    "RATE_LIMITED": "Juda koʻp soʻrov. Birozdan soʻng urinib koʻring.",
+    "NOT_FOUND": "Topilmadi.",
+    "BUDGET_TOO_LOW": "Byudjet minimal toʻlovlar yigʻindisidan kam."
   }
 }

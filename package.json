@@ -9,19 +9,26 @@
     "lint": "eslint",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:premium": "node --import tsx --test tests/*.test.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.132.1",
+    "@heroicons/react": "^2.2.0",
     "@prisma/client": "^6.19.3",
     "bcryptjs": "^3.0.3",
+    "chart.js": "^4.5.1",
+    "framer-motion": "^14.0.0",
     "jose": "^6.2.12",
     "lucide-react": "^1.53.0",
     "next": "16.4.0",
     "next-intl": "^4.14.9",
     "prisma": "^6.19.3",
     "react": "19.3.0",
+    "react-chartjs-2": "^5.3.1",
     "react-dom": "19.3.0",
-    "tsx": "^4.23.15"
+    "tsx": "^4.23.15",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",

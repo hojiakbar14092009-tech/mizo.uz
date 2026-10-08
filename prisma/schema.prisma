@@ -8,18 +8,22 @@ datasource db {
 }
 
 model User {
-  id           String    @id @default(cuid())
-  email        String?   @unique
-  pnfl         String?   @unique
+  id           String            @id @default(cuid())
+  email        String?           @unique
+  pnfl         String?           @unique
   passwordHash String
-  role         String    @default("USER")
+  role         String            @default("USER")
   birthDate    DateTime
-  createdAt    DateTime  @default(now())
+  createdAt    DateTime          @default(now())
   lastLoginAt  DateTime?
-  isBlocked    Boolean   @default(false)
+  isBlocked    Boolean           @default(false)
   queries      AiQuery[]
   goals        SavingsGoal[]
   reminders    PaymentReminder[]
+  tips         CommunityTip[]
+  tipLikes     TipLike[]
+  health       HealthSnapshot[]
+  smsLogs      SmsLog[]
 
   @@index([email])
   @@index([pnfl])
@@ -62,4 +66,82 @@ model PaymentReminder {
   user       User     @relation(fields: [userId], references: [id])
 
   @@index([userId])
+}
+
+// category: CREDIT | BUDGET | FRAUD | INVEST | GOAL
+model CommunityTip {
+  id          String    @id @default(cuid())
+  userId      String
+  category    String
+  title       String
+  content     String
+  savedAmount Float?
+  likesCount  Int       @default(0)
+  isHidden    Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  user        User      @relation(fields: [userId], references: [id])
+  likes       TipLike[]
+
+  @@index([category, createdAt])
+  @@index([likesCount])
+}
+
+model TipLike {
+  userId    String
+  tipId     String
+  createdAt DateTime     @default(now())
+  user      User         @relation(fields: [userId], references: [id])
+  tip       CommunityTip @relation(fields: [tipId], references: [id], onDelete: Cascade)
+
+  @@id([userId, tipId])
+}
+
+// type: CONSUMER | MORTGAGE | AUTO | MICRO | EDUCATION | REFINANCE
+model LoanOffer {
+  id                 String   @id @default(cuid())
+  bank               String
+  product            String
+  type               String
+  rateMin            Float
+  rateMax            Float
+  minAmount          Float
+  maxAmount          Float
+  minTermMonths      Int
+  maxTermMonths      Int
+  collateralRequired Boolean  @default(false)
+  approvalDays       Int      @default(1)
+  onlineApply        Boolean  @default(false)
+  note               String   @default("")
+  updatedAt          DateTime @updatedAt
+
+  @@index([type, rateMin])
+}
+
+// month: "YYYY-MM"; breakdown/inputs are JSON strings
+model HealthSnapshot {
+  id        String   @id @default(cuid())
+  userId    String
+  month     String
+  score     Int
+  breakdown String
+  inputs    String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, month])
+}
+
+// provider: "mock" until a real SMS gateway is wired; status: SENT | FAILED
+model SmsLog {
+  id         String   @id @default(cuid())
+  userId     String
+  reminderId String?
+  phone      String
+  body       String
+  status     String
+  provider   String   @default("mock")
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+
+  @@index([userId, createdAt])
 }

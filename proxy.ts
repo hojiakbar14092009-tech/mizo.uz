@@ -61,5 +61,12 @@ export const config = {
     '/admin/:path*',
     '/api/user/:path*',
     '/api/admin/:path*',
+    '/api/ai/:path*',
+    '/api/health/:path*',
+    '/api/wealth/:path*',
+    '/api/loans/:path*',
+    '/api/community/:path*',
+    '/api/debts/:path*',
+    '/api/sms/:path*',
   ],
 }
