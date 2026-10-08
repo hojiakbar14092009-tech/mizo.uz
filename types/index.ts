@@ -215,3 +215,25 @@ export interface ChatTurn {
   role: 'user' | 'assistant'
   content: string
 }
+
+export interface AdminUserDetail {
+  user: User
+  goals: { id: string; name: string; totalAmount: number; savedAmount: number; monthlyAmount: number }[]
+  totalSaved: number
+  totalTarget: number
+  reminders: { id: string; name: string; amount: number; dayOfMonth: number }[]
+  monthlyPayments: number
+  health: {
+    month: string
+    score: number
+    band: HealthBand | null
+    weakest: HealthComponentKey | null
+    monthlyIncome: number | null
+    monthlyExpenses: number | null
+    monthlyDebtPayments: number | null
+    savingsBalance: number | null
+  } | null
+  healthHistory: { month: string; score: number }[]
+  problems: { category: AiCategory; count: number }[]
+  recentQuestions: { id: string; category: AiCategory; questionText: string; createdAt: Date }[]
+}

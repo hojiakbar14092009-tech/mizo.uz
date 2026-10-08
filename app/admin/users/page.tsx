@@ -12,10 +12,12 @@ import {
   Search,
   UserCheck,
   UserX,
+  Eye,
 } from 'lucide-react'
 import { User } from '@/types'
 import { Badge } from '@/components/Badge'
 import { SkeletonCard } from '@/components/SkeletonCard'
+import { UserDetailModal } from '@/components/admin/UserDetailModal'
 
 export default function AdminUsersPage() {
   const [users, setUsers] = useState<User[]>([])
@@ -25,6 +27,7 @@ export default function AdminUsersPage() {
   const [loading, setLoading] = useState(true)
   const [updatingId, setUpdatingId] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
+  const [viewing, setViewing] = useState<{ id: string; name: string } | null>(null)
 
   // Foydalanuvchilarni yuklash
   const fetchUsers = async (p = 1) => {
@@ -237,6 +240,7 @@ export default function AdminUsersPage() {
                   <th className="py-3.5 px-4">Yosh</th>
                   <th className="py-3.5 px-4">Sana</th>
                   <th className="py-3.5 px-4">Holat</th>
+                  <th className="py-3.5 px-4 text-center">Koʻrish</th>
                   <th className="py-3.5 px-4 text-right">Amal</th>
                 </tr>
               </thead>
@@ -293,6 +297,18 @@ export default function AdminUsersPage() {
                         ) : (
                           <Badge variant="success">Faol</Badge>
                         )}
+                      </td>
+
+                      {/* Batafsil maʼlumot */}
+                      <td className="py-3.5 px-4 text-center">
+                        <button
+                          type="button"
+                          onClick={() => setViewing({ id: u.id, name: displayName })}
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-bold bg-fg/5 text-fg hover:bg-accent/15 hover:text-accent transition-all duration-100 active:scale-95 cursor-pointer"
+                        >
+                          <Eye className="w-3.5 h-3.5" />
+                          <span>Koʻrish</span>
+                        </button>
                       </td>
 
                       {/* Block / Unblock tugma */}
@@ -386,6 +402,10 @@ export default function AdminUsersPage() {
           </div>
         </div>
       </div>
+
+      {viewing && (
+        <UserDetailModal key={viewing.id} userId={viewing.id} displayName={viewing.name} onClose={() => setViewing(null)} />
+      )}
     </div>
   )
 }
