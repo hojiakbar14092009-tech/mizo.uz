@@ -1,0 +1,34 @@
+{
+  "app": {
+    "name": "Mizo",
+    "tagline": "Aqlli moliya — erkin kelajak"
+  },
+  "nav": {
+    "ai": "AI Maslahat",
+    "kredit": "Kredit",
+    "tejash": "Tejash",
+    "eslatma": "Eslatma",
+    "firib": "Firibgarlik"
+  },
+  "auth": {
+    "login": "Kirish",
+    "register": "Roʻyxatdan oʻtish",
+    "logout": "Chiqish",
+    "email": "Email",
+    "pnfl": "JShShIR (14 raqam)",
+    "password": "Parol",
+    "confirmPassword": "Parolni tasdiqlang",
+    "birthDate": "Tugʻilgan sana",
+    "welcomeBack": "Qaytib keldingiz!"
+  },
+  "errors": {
+    "AGE_RESTRICTION": "Mizo platformasidan faqat 18 yoshdan katta fuqarolar foydalana oladi.",
+    "PNFL_INVALID": "JShShIR notoʻgʻri formatda.",
+    "WEAK_PASSWORD": "Parol kamida 8 ta belgi, 1 ta katta va 1 ta kichik harfdan iborat boʻlishi shart.",
+    "DUPLICATE_USER": "Bu email yoki JShShIR allaqachon roʻyxatdan oʻtgan.",
+    "INVALID_CREDENTIALS": "Email/JShShIR yoki parol notoʻgʻri.",
+    "ACCOUNT_BLOCKED": "Hisobingiz bloklangan. Admin bilan bogʻlaning.",
+    "UNAUTHORIZED": "Kirish talab etiladi.",
+    "FORBIDDEN": "Ruxsat yoʻq."
+  }
+}

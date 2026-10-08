@@ -1,26 +1,56 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --mz-background: #f8fafc;
+  --mz-surface: #ffffff;
+  --mz-border: #e2e8f0;
+  --mz-fg: #0f172a;
+  --mz-muted: #64748b;
+  --mz-accent: #059669;
+  --mz-danger: #dc2626;
+  --mz-warning: #d97706;
 }
 
+.dark {
+  --mz-background: #090d16;
+  --mz-surface: #111827;
+  --mz-border: #1f2937;
+  --mz-fg: #f1f5f9;
+  --mz-muted: #94a3b8;
+  --mz-accent: #10b981;
+  --mz-danger: #f87171;
+  --mz-warning: #f59e0b;
+  color-scheme: dark;
+}
+
+/* bg-surface, text-fg ... switch with the .dark class automatically;
+   the fixed *-dark tokens keep dark:bg-surface-dark style working too. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--mz-background);
+  --color-surface: var(--mz-surface);
+  --color-border: var(--mz-border);
+  --color-fg: var(--mz-fg);
+  --color-muted: var(--mz-muted);
+  --color-accent: var(--mz-accent);
+  --color-danger: var(--mz-danger);
+  --color-warning: var(--mz-warning);
+
+  --color-background-dark: #090d16;
+  --color-surface-dark: #111827;
+  --color-border-dark: #1f2937;
+  --color-fg-dark: #f1f5f9;
+  --color-muted-dark: #94a3b8;
+  --color-accent-dark: #10b981;
+  --color-danger-dark: #f87171;
+  --color-warning-dark: #f59e0b;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--mz-background);
+  color: var(--mz-fg);
 }

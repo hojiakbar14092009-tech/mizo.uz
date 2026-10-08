@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String?   @unique
+  pnfl         String?   @unique
+  passwordHash String
+  role         String    @default("USER")
+  birthDate    DateTime
+  createdAt    DateTime  @default(now())
+  lastLoginAt  DateTime?
+  isBlocked    Boolean   @default(false)
+  queries      AiQuery[]
+  goals        SavingsGoal[]
+  reminders    PaymentReminder[]
+
+  @@index([email])
+  @@index([pnfl])
+  @@index([role, isBlocked])
+  @@index([createdAt])
+}
+
+model AiQuery {
+  id           String   @id @default(cuid())
+  userId       String
+  category     String
+  questionText String
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id])
+
+  @@index([userId, createdAt])
+}
+
+model SavingsGoal {
+  id            String   @id @default(cuid())
+  userId        String
+  name          String
+  totalAmount   Float
+  savedAmount   Float    @default(0)
+  monthlyAmount Float    @default(0)
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+model PaymentReminder {
+  id         String   @id @default(cuid())
+  userId     String
+  name       String
+  amount     Float
+  dayOfMonth Int
+  phone      String   @default("")
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
