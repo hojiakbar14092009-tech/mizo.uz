@@ -24,16 +24,16 @@
 
 ### Demo User
 ```
-Email: demo@mizo.uz
-Пароль: Demo1234!
+Email: coddycamp@gmail.com
+Пароль: Hackathon1234
 Роль: USER
 Статус: Active
 ```
 
 ### Admin
 ```
-Email: admin@mizo.uz
-Пароль: Admin1234!
+Email: hojiakbar14092009@gmail.com
+Пароль: Hoji1234
 Роль: ADMIN
 Статус: Active
 ```
@@ -87,7 +87,7 @@ PNFL: 10512891234567 (male, born 1989-12-05, будет ≥18)
 - Получите совет (Claude API или fallback regex)
 
 ### Admin Panel
-- Логинитесь как `admin@mizo.uz`
+- Логинитесь как `hojiakbar14092009@gmail.com`
 - Перейдите `/admin`
 - Смотрите KPI: avg health score, tips count, users
 - Модерируйте community tips (hide/show)

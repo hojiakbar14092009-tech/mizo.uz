@@ -3,15 +3,35 @@ import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
+const ADMIN_EMAIL = 'hojiakbar14092009@gmail.com'
+const DEMO_EMAIL = 'coddycamp@gmail.com'
+
+// Renames an already-seeded account so its demo data (goals, tips, history) follows it.
+async function moveAccount(from: string, to: string) {
+  const [old, taken] = await Promise.all([
+    prisma.user.findUnique({ where: { email: from } }),
+    prisma.user.findUnique({ where: { email: to } }),
+  ])
+  if (old && !taken) await prisma.user.update({ where: { email: from }, data: { email: to } })
+}
+
 async function main() {
-  const adminHash = await bcrypt.hash('Admin1234!', 12)
-  const demoHash = await bcrypt.hash('Demo1234!', 12)
+  const adminHash = await bcrypt.hash('Hoji1234', 12)
+  const demoHash = await bcrypt.hash('Hackathon1234', 12)
+
+  await moveAccount('admin@mizo.uz', ADMIN_EMAIL)
+  await moveAccount('demo@mizo.uz', DEMO_EMAIL)
+  // Old credentials are public in git history: never leave them able to log in.
+  await prisma.user.updateMany({
+    where: { email: { in: ['admin@mizo.uz', 'demo@mizo.uz'] } },
+    data: { role: 'USER', isBlocked: true },
+  })
 
   const admin = await prisma.user.upsert({
-    where: { email: 'admin@mizo.uz' },
-    update: {},
+    where: { email: ADMIN_EMAIL },
+    update: { passwordHash: adminHash, role: 'ADMIN', isBlocked: false },
     create: {
-      email: 'admin@mizo.uz',
+      email: ADMIN_EMAIL,
       passwordHash: adminHash,
       role: 'ADMIN',
       birthDate: new Date('1985-05-15'),
@@ -19,10 +39,10 @@ async function main() {
   })
 
   const demo = await prisma.user.upsert({
-    where: { email: 'demo@mizo.uz' },
-    update: {},
+    where: { email: DEMO_EMAIL },
+    update: { passwordHash: demoHash, role: 'USER', isBlocked: false },
     create: {
-      email: 'demo@mizo.uz',
+      email: DEMO_EMAIL,
       passwordHash: demoHash,
       role: 'USER',
       birthDate: new Date('2000-03-20'),

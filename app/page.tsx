@@ -369,8 +369,8 @@ export default async function Home() {
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   {[
-                    { title: t('demo.userTitle'), note: t('demo.userNote'), email: 'demo@mizo.uz', password: 'Demo1234!' },
-                    { title: t('demo.adminTitle'), note: `${t('demo.adminNote')} · /admin`, email: 'admin@mizo.uz', password: 'Admin1234!' },
+                    { title: t('demo.userTitle'), note: t('demo.userNote'), email: 'coddycamp@gmail.com', password: 'Hackathon1234' },
+                    { title: t('demo.adminTitle'), note: `${t('demo.adminNote')} · /admin`, email: 'hojiakbar14092009@gmail.com', password: 'Hoji1234' },
                   ].map((acc) => (
                     <div key={acc.email} className="space-y-3 rounded-2xl border border-border bg-background/40 p-4">
                       <div>

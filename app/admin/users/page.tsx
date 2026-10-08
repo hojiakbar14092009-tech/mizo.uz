@@ -44,7 +44,7 @@ export default function AdminUsersPage() {
       const seedUsers: User[] = [
         {
           id: 'admin-1',
-          email: 'admin@mizo.uz',
+          email: 'hojiakbar14092009@gmail.com',
           role: 'ADMIN',
           birthDate: new Date('1985-05-15'),
           createdAt: new Date('2026-01-01'),
@@ -52,7 +52,7 @@ export default function AdminUsersPage() {
         },
         {
           id: 'demo-2',
-          email: 'demo@mizo.uz',
+          email: 'coddycamp@gmail.com',
           role: 'USER',
           birthDate: new Date('2000-03-20'),
           createdAt: new Date('2026-02-10'),
@@ -82,7 +82,7 @@ export default function AdminUsersPage() {
       setUsers([
         {
           id: 'demo-2',
-          email: 'demo@mizo.uz',
+          email: 'coddycamp@gmail.com',
           role: 'USER',
           birthDate: new Date('2000-03-20'),
           createdAt: new Date('2026-02-10'),

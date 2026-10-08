@@ -151,7 +151,7 @@ export default function LoginPage() {
             name="email"
             type="email"
             required
-            placeholder="admin@mizo.uz yoki demo@mizo.uz"
+            placeholder="email@gmail.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             icon={<EnvelopeIcon className="w-4 h-4" />}
