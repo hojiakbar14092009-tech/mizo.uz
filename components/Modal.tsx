@@ -80,7 +80,7 @@ export function Modal({
         </div>
 
         {/* Body */}
-        <div className="p-6 overflow-y-auto">{children}</div>
+        <div className="p-6 overflow-y-auto pb-20 sm:pb-6">{children}</div>
       </div>
     </div>
   )
