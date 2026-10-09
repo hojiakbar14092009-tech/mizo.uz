@@ -38,6 +38,7 @@ export default function EslatmaPage() {
   const [sendingSmsId, setSendingSmsId] = useState<string | null>(null)
   const [smsToast, setSmsToast] = useState<{ title: string; desc: string } | null>(null)
   const [smsBubbleKey, setSmsBubbleKey] = useState<number>(0)
+  const [deletingId, setDeletingId] = useState<string | null>(null)
 
   // Yangi eslatma formasi
   const [name, setName] = useState('')
@@ -128,6 +129,21 @@ export default function EslatmaPage() {
       setTimeout(() => {
         setSmsToast(null)
       }, 5000)
+    }
+  }
+
+  // Kreditni o'chirish
+  const handleMarkPaid = async (reminder: PaymentReminder) => {
+    setDeletingId(reminder.id)
+    try {
+      const res = await fetch(`/api/user/reminders/${reminder.id}`, { method: 'DELETE' })
+      if (res.ok) {
+        setReminders((prev) => prev.filter((r) => r.id !== reminder.id))
+      }
+    } catch {
+      // error
+    } finally {
+      setDeletingId(null)
     }
   }
 
@@ -279,33 +295,17 @@ export default function EslatmaPage() {
                       </strong>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                      {/* SMS yuborish tugmasi */}
-                      <button
-                        type="button"
-                        onClick={() => handleSendSms(reminder)}
-                        disabled={sendingSmsId === reminder.id}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-accent text-white hover:opacity-95 active:scale-95 transition-all shadow-2xs cursor-pointer disabled:opacity-50"
-                      >
-                        <PaperAirplaneIcon className="w-3.5 h-3.5" />
-                        <span>
-                          {sendingSmsId === reminder.id ? 'Yuborilmoqda...' : 'SMS yuborish'}
-                        </span>
-                      </button>
-
-                      {/* Telefon ko'rinishi */}
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setSelectedSmsReminder(reminder)
-                          setSmsBubbleKey((prev) => prev + 1)
-                        }}
-                        className="p-1.5 rounded-xl bg-surface border border-border text-muted hover:text-fg hover:border-accent/40 active:scale-95 transition-all cursor-pointer shadow-2xs"
-                        title="Telefonda ko'rish"
-                      >
-                        <ChatBubbleLeftRightIcon className="w-4 h-4" />
-                      </button>
-                    </div>
+                    <button
+                      type="button"
+                      onClick={() => handleMarkPaid(reminder)}
+                      disabled={deletingId === reminder.id}
+                      className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-bold bg-accent/20 text-accent hover:bg-accent/30 active:scale-95 transition-all shadow-2xs cursor-pointer disabled:opacity-50"
+                    >
+                      <CheckCircleIcon className="w-3.5 h-3.5" />
+                      <span>
+                        {deletingId === reminder.id ? 'O\'chirilmoqda...' : 'Toʻlandi'}
+                      </span>
+                    </button>
                   </div>
                 </motion.div>
               )
